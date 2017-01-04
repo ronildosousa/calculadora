@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2016 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <!-- Good default declaration:
+    * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+    * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+    * Disables use of eval() and inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+        * Enable inline JS: add 'unsafe-inline' to default-src
+        * Enable eval(): add 'unsafe-eval' to default-src
+    * Create your own at http://cspisawesome.com
+    -->
+    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
+
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+     <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <title>Hello World</title>
+  	<script type="text/javascript">
+  		var valor1, valor2, resultado, operador;
+
+  		function mostranum(num){
+  			document.calcForm.visor.value = document.calcForm.visor.value + num;
+  		}
+  		function limpaTela(){
+  			document.calcForm.visor.value = "";
+  		}
+  		function dividi(){
+  			operador = '/';
+  			valor1 = parseFloat(document.calcForm.visor.value);
+  			document.calcForm.visor.value = '';
+  		}
+  		function multiplica(){
+  			operador = '*';
+  			valor1 = parseFloat(document.calcForm.visor.value);
+  			document.calcForm.visor.value = '';
+  		}
+  		function subtrai(){
+  			operador = '-';
+  			valor1 = parseFloat(document.calcForm.visor.value);
+  			document.calcForm.visor.value = '';
+  		}
+  		function soma(){
+  			operador = '+';
+  			valor1 = parseFloat(document.calcForm.visor.value);
+  			document.calcForm.visor.value = '';
+  		}
+  		function calcular(){
+  			valor2 = parseFloat(document.calcForm.visor.value);
+  			if (operador == '+') {
+  				resultado = valor1 + valor2;
+  			}
+  			else if (operador == '-') {
+  				resultado = valor1 - valor2;
+  			}
+  			if (operador == '*') {
+  				resultado = valor1 * valor2;
+  			}
+  			if (operador == '/') {
+  				resultado = valor1 / valor2;
+  			}
+  			else{
+  					document.calcForm.visor.value = "ERRO";
+  			}
+  				document.calcForm.visor.value = resultado;
+  		}
+  	</script>
+</head>
+
+<body>
+
+    <div class="app">
+    <form name="calcForm" method="post" action="">
+    	<h1>Minha Calculadora</h1>
+        <table>
+            <tr>
+                <td><input tepy="text" class="tela" name="visor" value=""></td>
+            </tr>
+        </table>
+       <table>
+            <tr>
+                	<td><input type="button" class="botao4" name="limpar" value="CE" onClick="limpaTela()"></td>
+                	<td><input type="button" class="botao1" name="limpar1" value="9" onClick="mostranum(9)"></td>
+                  	<td><input type="button" class="botao2" name="dividir" value="/" onClick="dividi()"></td>
+                  	<td><input type="button" class="botao2" name="mult" value="*" onClick="multiplica()"></td>
+            </tr>
+              <tr>
+                	<td><input type="button" class="botao1" name="num7" value="6" onClick="mostranum(6)"></td>
+                	<td><input type="button" class="botao1" name="num8" value="7" onClick="mostranum(7)"></td>
+                 	<td><input type="button" class="botao1" name="num9" value="8" onClick="mostranum(8)"></td>
+                  	<td><input type="button" class="botao2" name="subtrair" value="-" onClick="subtrai()"></td>
+            </tr>   
+              <tr>
+                	<td><input type="button" class="botao1" name="num4" value="3" onClick="mostranum(3)"></td>
+                	<td><input type="button" class="botao1" name="num5" value="4" onClick="mostranum(4)"></td>
+                  	<td><input type="button" class="botao1" name="num6" value="5" onClick="mostranum(5)"></td>
+                   	<td><input type="button" class="botao2" name="somar" value="+" onClick="soma()"></td>
+            </tr>   
+              <tr>
+                	<td><input type="button" class="botao1" name="num0" value="0" onClick="mostranum(0)"></td>
+                	<td><input type="button" class="botao1" name="num1" value="1" onClick="mostranum(1)"></td>
+                 	<td><input type="button" class="botao1" name="num2" value="2" onClick="mostranum(2)"></td>
+                  	<td><input type="button" class="botao3" name="igual" value="=" onClick="calcular()"></td>
+            </tr> 
+
+        </table>
+    </form>  
+         
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+
+</html>
